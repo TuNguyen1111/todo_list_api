@@ -25,3 +25,10 @@ def task_list(request):
     tasks = Task.objects.all()
     serializer = TaksSerializer(tasks, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def task_detail(request, pk):
+    task = Task.objects.get(id=pk)
+    serializer = TaksSerializer(task, many=False)
+    return Response(serializer.data)
